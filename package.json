@@ -1,0 +1,29 @@
+{
+  "name": "feeder",
+  "version": "1.0.0",
+  "description": "An RSS/Atom feed parser that converts RSS and Atom Feeds to a single object type.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsdoc": "./node_modules/.bin/jsdoc ./src/index.js"
+  },
+  "keywords": [
+    "rss",
+    "atom",
+    "feed"
+  ],
+  "author": "somners",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "requizzle": "^0.2.1",
+    "sax": "^1.2.2"
+  },
+  "dependencies": {
+    "sax": "^1.2.2"
+  }
+}

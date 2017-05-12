@@ -1,0 +1,12 @@
+#IDE
+.vscode/
+
+#node
+node_modules/
+
+#documentation
+out/
+
+#misc
+test-output.json
+test/test-output.json
