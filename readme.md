@@ -1,4 +1,4 @@
-welcome to my first node module!
+Welcome to my first node module!
 
 # feeder 
 
@@ -12,6 +12,8 @@ feeder is a small, simple to use Atom and RSS parser. It uses the fast and light
 * One stop library for all Atom/RSS needs
 
 #### Examples
+Install with:
+```> npm install --save-dev feeder```
 To retreive a feed is very simple. Let's examine the following code.
 ```javascript
 const feeder = require('../src/index');
@@ -33,3 +35,6 @@ MIT
 
 #### Contributions
 Pull and feature requests are welcome. Please use the linting rules in the eslint file.
+
+#### ToDo
+* Add support for reading from files and streams
