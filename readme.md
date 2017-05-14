@@ -1,8 +1,8 @@
 Welcome to my first node module!
 
-# feeder 
+# feederjs 
 
-feeder is a small, simple to use Atom and RSS parser. It uses the fast and lightweight [sax-js](https://github.com/isaacs/sax-js) Sax parser to parse an Atom or RSS feed into a single JavaScript Object type that mimics the structure (but not exactly) of the Atom Specification.
+feederjs is a small, simple to use Atom and RSS parser. It uses the fast and lightweight [sax-js](https://github.com/isaacs/sax-js) Sax parser to parse an Atom or RSS feed into a single JavaScript Object type that mimics the structure (but not exactly) of the Atom Specification.
 
 ###### What this is intended to be:
 * Simple to Implement
@@ -13,17 +13,17 @@ feeder is a small, simple to use Atom and RSS parser. It uses the fast and light
 
 #### Examples
 Install with:
-```> npm install --save-dev feeder```
+```> npm install --save-dev feederjs```
 To retreive a feed is very simple. Let's examine the following code.
 ```javascript
-const feeder = require('../src/index');
+const feeder = require('feederjs');
 feeder.getFeed('http://feeds.reuters.com/news/artsculture?format=xml', (feed) => { console.log(feed.title); });
 ```
 would output
 ```javascript
 "Reuters: Arts"
 ```
-Pretty simple, right? While feeder aims to be simple, this limits it's use cases.
+Pretty simple, right? While feederjs aims to be simple, this limits it's use cases.
 If you are looking for a parser that is more structured around the RSS Specification you might want to try [feedparser](https://github.com/danmactough/node-feedparser).
 Or if you are looking for in depth parsing of the xml structure, you may want to look at [sax-js](https://github.com/isaacs/sax-js).
 

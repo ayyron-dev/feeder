@@ -1,0 +1,6 @@
+#IDE
+.vscode/
+
+#misc
+test-output.json
+test/test-output.json

@@ -1,5 +1,5 @@
 {
-  "name": "feeder",
+  "name": "feederjs",
   "version": "1.0.0",
   "description": "An RSS/Atom feed parser that converts RSS and Atom Feeds to a single object type.",
   "main": "src/index.js",
