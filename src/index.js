@@ -75,6 +75,10 @@ class Feed {
   }
 }
 
+ /** 
+ * Feed Class, unified format that represents an entry in an Atom or RSS feed.
+ * @class
+ */
 class Entry {
   constructor() {
     /** 
@@ -276,28 +280,30 @@ function getFeedFieldName(feedType, fieldName) {
   return fieldName;
 }
 
-function getXmlString(url, callback) {
-  const process = (response) => {
-    // Continuously update stream with data
-    let responseBody = '';
-    response.on('data', (d) => {
-      responseBody += d;
-    });
-    // callback with stream response.
-    response.on('end', () => {
-      callback(responseBody);
-    });
-  };
-  let request;
-  if (url.startsWith('https')) {
-    request = https.request(url, process); // create a new agent just for this one request
-  } else if (url.startsWith('http')) {
-    request = http.request(url, process);
-  } else {
-    throw new FeederException('Url must specify protocol.');
-  }
-    
-  request.end();
+function getXmlString(url) {
+  return new Promise((resolve, reject) => {
+    const process = (response) => {
+      // Continuously update stream with data
+      let responseBody = '';
+      response.on('data', (d) => {
+        responseBody += d;
+      });
+      // callback with stream response.
+      response.on('end', () => {
+        resolve(responseBody);
+      });
+    };
+    let request;
+    if (url.startsWith('https')) {
+      request = https.request(url, process); // create a new agent just for this one request
+    } else if (url.startsWith('http')) {
+      request = http.request(url, process);
+    } else {
+      reject(new FeederException('Url must specify protocol.'));
+    }
+      
+    request.end();
+  });
 }
 
 function parseFeed(parser, feedType) {
@@ -351,7 +357,7 @@ function parseFeed(parser, feedType) {
   };
 
   parser.ontext = function ontext(text) {
-    if (tagName === 'link' && feedType == FeedType.RSS2) {
+    if (tagName === 'link' && feedType === FeedType.RSS2) {
       objects.peek().href = text;
     } else if (objects.peek()) {
       // if tag is a property of the class, write the data
@@ -373,7 +379,7 @@ function parseFeed(parser, feedType) {
   return feed;
 }
 
-function xmlStringToJSON(xmlString, callback) {
+function xmlStringToJSON(xmlString) {
   const parser = saxjs.parser(true);
   let feed = null;
   let feedType;
@@ -396,7 +402,7 @@ function xmlStringToJSON(xmlString, callback) {
   };
   
   parser.write(xmlString).end();
-  callback(feed);
+  return feed;
 }
 
 /**
@@ -405,7 +411,7 @@ function xmlStringToJSON(xmlString, callback) {
  * @param {function} callback - the function to call back upon with the Feed object.
  */
 function getFeed(url, callback) {
-  getXmlString(url, (data) => { xmlStringToJSON(data, callback); });
+  getXmlString(url).then(xmlStringToJSON).then(callback).catch(callback);
 }
 
 module.exports = { 
