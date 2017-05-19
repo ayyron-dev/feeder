@@ -1,6 +1,7 @@
-const saxjs = require('sax');
+const dns = require('dns');
 const http = require('http');
 const https = require('https');
+const saxjs = require('sax');
 
  /** 
  * Feed Class, unified format that represents an Atom or RSS feed.
@@ -301,7 +302,7 @@ function getXmlString(url) {
     } else {
       reject(new FeederException('Url must specify protocol.'));
     }
-      
+    request.on('error', (err) => { reject(new FeederException(err.message)); });
     request.end();
   });
 }

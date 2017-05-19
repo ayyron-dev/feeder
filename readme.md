@@ -28,7 +28,7 @@ Sometimes, we Err. If your passed ``url`` does not specify a protocol, or if the
 To catch this, consider:
 ```javascript
 feeder.getFeed('https://google.com', (feed) => {
-  if (data instanceof feeder.FeederException){
+  if (feed instanceof feeder.FeederException){
     console.log('error: ' + feed.message);
   } else {
     console.log(feed.title);
