@@ -47,6 +47,7 @@ MIT
 
 #### Contributions
 Pull and feature requests are welcome. Please use the linting rules in the eslint file.
+Please open an issue or comment on an existing one to outline your intent of the the Pull Request.
 
 #### ToDo
 * Add support for reading from files and streams
