@@ -334,8 +334,8 @@ function parseFeed(parser, feedType) {
       current = new Link();
       // look for 'href' and 'rel' tags
       Object.keys(attributes).forEach((value, index) => {
-        if (current[index] !== undefined) {
-          current[index] = value;
+        if (current[value] !== undefined) {
+          current[value] = attributes[value];
         }
       });
       objects.peek().link.push(current);
